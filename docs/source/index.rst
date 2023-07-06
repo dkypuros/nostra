@@ -1,19 +1,12 @@
-.. nostra documentation master file, created by
-   sphinx-quickstart on Thu Jul  6 15:55:54 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Documentation Site
+============================
 
-Welcome to Nostra's documentation!
-==================================
+Bobby and David's AI Repo
+---------------------------------------------
 
-.. toctree::
+
+.. toctree:: 
    :maxdepth: 2
-   :caption: Contents:
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   :caption: Table of Contents:
+   
+   page1
