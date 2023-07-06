@@ -11,6 +11,7 @@ Welcome to nostra's documentation!
    :caption: Contents:
 
 
+Some text right here
 
 Indices and tables
 ==================
