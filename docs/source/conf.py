@@ -16,6 +16,7 @@ release = '1'
 
 extensions = [
      'sphinx_copybutton'
+     'sphinxcontrib.mermaid'
  ]
 
 templates_path = ['_templates']
