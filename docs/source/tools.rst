@@ -2,6 +2,7 @@ Third Party Tools
 =================
 
 AI Model Tools
+OpenAI ChatGPT - https://chat.openai.com/
 Weaviate - https://weaviate.io/
 gpt4all - https://gpt4all.io/
 HuggingFace - https://huggingface.co/
