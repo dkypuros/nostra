@@ -46,6 +46,10 @@ YouTube Links
     - Weaviate : deep dive:
 https://youtu.be/IGB8vjCuay0
 
+    - Weaviate: manual import of json and hand searching the data in weaviate before involving LLM to control quality of data.
+
+https://youtu.be/ichptfuCvog
+
 .. mermaid::
 
     graph LR
