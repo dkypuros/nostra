@@ -43,6 +43,9 @@ YouTube Links
 +++++++++++++
     - Run MPT-30B LLM on CPU: https://youtu.be/Ii3m8P3pp1c
 
+    - Weaviate : deep dive:
+https://youtu.be/IGB8vjCuay0
+
 .. mermaid::
 
     graph LR
