@@ -21,7 +21,7 @@ Setup volume (storage)
 
 .. code-block:: bash
 
-    podman volume create weaviate-db-store
+    podman volume create weaviate-db-docs
 
 .. code-block:: bash
 
@@ -37,11 +37,10 @@ Setup Yaml for compose
 :code:`docker-compose.yaml`
 
 .. code-block:: yaml
-   :linenos:
 
     version: '3'
     services:
-    weaviate-node-1:
+    weaviate:
         init: true
         command:
         - --host
@@ -56,18 +55,28 @@ Setup Yaml for compose
         - 6060:6060
         restart: on-failure:0
         volumes:
-        - weaviate-db-store:/var/lib/weaviate
+        - weaviate-db-docs:/var/lib/weaviate
         environment:
         LOG_LEVEL: 'debug'
-        QUERY_DEFAULTS_LIMIT: 25
+        QUERY_DEFAULTS_LIMIT: 20
         AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
         PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-        DEFAULT_VECTORIZER_MODULE: 'none'
+        DEFAULT_VECTORIZER_MODULE: text2vec-transformers
+        ENABLE_MODULES: text2vec-transformers
+        TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
         CLUSTER_HOSTNAME: 'node1'
         CLUSTER_GOSSIP_BIND_PORT: '7100'
         CLUSTER_DATA_BIND_PORT: '7101'
+    t2v-transformers:
+        image: docker.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
+        environment:
+        ENABLE_CUDA: '0'  # set to '1' to enable CUDA if running with NVIDIA GPUs
+    weaviate-playground:
+        image: docker.io/semitechnologies/weaviate-playground
+        ports:
+        - "8081:80"
     volumes:
-    weaviate-db-store:
+    weaviate-db-docs:
 
 
 Build the container
