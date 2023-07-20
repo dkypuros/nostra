@@ -27,8 +27,11 @@ Setup volume (storage)
 
     podman volume ls
 
-Setup Yaml for compose
-+++++++++++++++++++++++++++
+
+Compose for  "Text2Transformers" & "Weaviate Playground"
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
 .. tip::
 
@@ -87,68 +90,6 @@ Build the container
     podman-compose up -d && podman-compose logs -f weaviate
 
 That's it for the base installation of Weaviate.
-
-
-Adding Modules
-----------------------------------------------------------
-
-Find the correct image
-++++++++++++++++++++++++++
-
-.. code-block:: bash
-
-    podman search docker.io/semitechnologies/
-
-Let's Add  "Text2Transformers" & "Weaviate Playground"
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-.. warning::
-
-    This thing is 4.4GiB
-
-.. code-block:: bash
-
-    podman pull docker.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
-
-:code:`docker-compose.yaml`
-
-.. code-block:: yaml
-   :linenos:
-   :emphasize-lines: 4, 26, 14, 8, 18
-
-    version: '3'
-    services:
-    weaviate:
-        image: docker.io/semitechnologies/weaviate
-        ports:
-        - "8080:8080"
-        volumes:
-        - weaviate-db-store:/var/lib/weaviate
-        environment:
-        QUERY_DEFAULTS_LIMIT: 20
-        AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-        PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
-        DEFAULT_VECTORIZER_MODULE: text2vec-transformers
-        ENABLE_MODULES: text2vec-transformers
-        TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
-        CLUSTER_HOSTNAME: 'node1'
-    t2v-transformers:
-        image: docker.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
-        environment:
-        ENABLE_CUDA: '0'  # set to '1' to enable CUDA if running with NVIDIA GPUs
-    weaviate-playground:
-        image: docker.io/semitechnologies/weaviate-playground
-        ports:
-        - "8081:80"
-    volumes:
-    weaviate-db-store:
-
-
-
-.. code-block:: bash
-
-    podman-compose up -d && \
-    podman-compose logs -f weaviate
 
 
 View the Playground
