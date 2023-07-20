@@ -82,8 +82,8 @@ Compose for  "Text2Transformers" & "Weaviate Playground"
     weaviate-db-docs:
 
 
-Build the container
-++++++++++++++++++++++++++
+Build the container using Podman
++++++++++++++++++++++++++++++++++++++++
 
 .. code-block:: bash
 
